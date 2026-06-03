@@ -6,7 +6,7 @@ products = spark.table("silver_products")
 
 customers = spark.table("silver_customers")
 
-payments = spark.table("silver_payments")
+#payments = spark.table("silver_payments")
 
 sellers = spark.table("silver_sellers")
 
@@ -16,7 +16,7 @@ category = spark.table("silver_category")
 
 
 sales_fact = orders.join(
-    order_items,
+     order_items,
     on="order_id",
     how="inner"
 )

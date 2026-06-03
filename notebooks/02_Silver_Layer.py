@@ -22,7 +22,7 @@ reviews_clean = reviews_df.dropDuplicates()
 sellers_clean = sellers_df.dropDuplicates()
 category_clean = category_df.dropDuplicates()
 
-
+spark.sql("DROP TABLE IF EXISTS bronze_order_items")
 # Create Silver Tables
 
 customers_clean.write.format("delta").mode("overwrite").saveAsTable("silver_customers")
