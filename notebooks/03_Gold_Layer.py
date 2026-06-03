@@ -17,23 +17,13 @@ category = spark.table("silver_category_translation")
 
 sales_fact = orders.join(
     order_items,
-    "order_id",
-    "inner"
-)
-
-sales_fact = sales_fact.join(
-    customers,
-    "customer_id",
-    "left"
-)
-
-sales_fact = sales_fact.join(
-    products,
-    "product_id",
-    "left"
+    on="order_id",
+    how="inner"
 )
 
 display(sales_fact)
+
+
 
 
 
