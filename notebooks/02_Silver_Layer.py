@@ -17,28 +17,22 @@ order_items_clean = order_items_df.dropDuplicates()
 payments_clean = payments_df.dropDuplicates()
 reviews_clean = reviews_df.dropDuplicates()
 sellers_clean = sellers_df.dropDuplicates()
+category_clean = category_df.dropDuplicates()
 
-
-# Product Category Translation
-
-products_clean = products_clean.join(
-    category_df,
-    "product_category_name",
-    "left"
-)
 
 # Create Silver Tables
 
-customers_clean.write.format("delta").mode("overwrite").saveAsTable("silver_customers")
+customers_clean.write.format("delta").mode("append").saveAsTable("silver_customers")
 
-orders_clean.write.format("delta").mode("overwrite").saveAsTable("silver_orders")
+orders_clean.write.format("delta").mode("append").saveAsTable("silver_orders")
 
-products_clean.write.format("delta").mode("overwrite").saveAsTable("silver_products")
+products_clean.write.format("delta").mode("append").saveAsTable("silver_products")
 
-order_items_clean.write.format("delta").mode("overwrite").saveAsTable("silver_order_items")
+order_items_clean.write.format("delta").mode("append").saveAsTable("silver_order_items")
 
-payments_clean.write.format("delta").mode("overwrite").saveAsTable("silver_payments")
+payments_clean.write.format("delta").mode("append").saveAsTable("silver_payments")
 
-reviews_clean.write.format("delta").mode("overwrite").saveAsTable("silver_reviews")
+reviews_clean.write.format("delta").mode("append").saveAsTable("silver_reviews")
 
-sellers_clean.write.format("delta").mode("overwrite").saveAsTable("silver_sellers")
+sellers_clean.write.format("delta").mode("append").saveAsTable("silver_sellers")
+category_clean.write.format("delta").mode("append").saveAsTable("silver_category")
