@@ -2,11 +2,10 @@ customers_df = spark.table("bronze_customers")
 orders_df = spark.table("bronze_orders")
 products_df = spark.table("bronze_products")
 order_items_df = spark.table("bronze_order_items")
-payments_df = spark.table("bronze_payments")
+#payments_df = spark.table("bronze_payments")
 reviews_df = spark.table("bronze_reviews")
 sellers_df = spark.table("bronze_sellers")
 category_df = spark.table("bronze_category_translation")
-
 
 # Remove Duplicates
 
@@ -14,7 +13,7 @@ customers_clean = customers_df.dropDuplicates()
 orders_clean = orders_df.dropDuplicates()
 products_clean = products_df.dropDuplicates()
 order_items_clean = order_items_df.dropDuplicates()
-payments_clean = payments_df.dropDuplicates()
+#payments_clean = payments_df.dropDuplicates()
 reviews_clean = reviews_df.dropDuplicates()
 sellers_clean = sellers_df.dropDuplicates()
 category_clean = category_df.dropDuplicates()
@@ -30,9 +29,10 @@ products_clean.write.format("delta").mode("append").saveAsTable("silver_products
 
 order_items_clean.write.format("delta").mode("append").saveAsTable("silver_order_items")
 
-payments_clean.write.format("delta").mode("append").saveAsTable("silver_payments")
+#payments_clean.write.format("delta").mode("append").saveAsTable("silver_payments")
 
 reviews_clean.write.format("delta").mode("append").saveAsTable("silver_reviews")
 
 sellers_clean.write.format("delta").mode("append").saveAsTable("silver_sellers")
+
 category_clean.write.format("delta").mode("append").saveAsTable("silver_category")
