@@ -14,7 +14,7 @@ reviews = spark.table("silver_reviews")
 
 category = spark.table("silver_category")
 
-
+#join order items
 sales_fact = orders.join(
      order_items,
     on="order_id",
