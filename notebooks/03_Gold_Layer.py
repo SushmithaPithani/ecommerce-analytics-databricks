@@ -12,7 +12,7 @@ sellers = spark.table("silver_sellers")
 
 reviews = spark.table("silver_reviews")
 
-category = spark.table("silver_category_translation")
+category = spark.table("silver_category")
 
 
 sales_fact = orders.join(
