@@ -21,8 +21,29 @@ sales_fact = orders.join(
     how="inner"
 )
 
-display(sales_fact)
+#display(sales_fact)
+#Join Products
+sales_fact = sales_fact.join(
+    products,
+    on="product_id",
+    how="left"
+)
 
+display(sales_fact.limit(20))
+#Join Customers
+sales_fact = sales_fact.join(
+    customers,
+    on="customer_id",
+    how="left"
+)
+
+display(sales_fact.limit(20))
+
+sales_fact.write \
+.format("delta") \
+.option("overwriteSchema","true") \
+.mode("overwrite") \
+.saveAsTable("gold_sales_fact")
 
 
 
