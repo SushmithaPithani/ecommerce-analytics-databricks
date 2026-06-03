@@ -7,6 +7,10 @@ reviews_df = spark.table("bronze_reviews")
 sellers_df = spark.table("bronze_sellers")
 category_df = spark.table("bronze_category_translation")
 
+
+spark.sql("DROP TABLE IF EXISTS silver_orders")
+spark.sql("DROP TABLE IF EXISTS silver_products")
+spark.sql("DROP TABLE IF EXISTS silver_category")
 # Remove Duplicates
 
 customers_clean = customers_df.dropDuplicates()
@@ -21,18 +25,18 @@ category_clean = category_df.dropDuplicates()
 
 # Create Silver Tables
 
-customers_clean.write.format("delta").mode("append").saveAsTable("silver_customers")
+customers_clean.write.format("delta").mode("overwrite").saveAsTable("silver_customers")
 
-orders_clean.write.format("delta").mode("append").saveAsTable("silver_orders")
+orders_clean.write.format("delta").mode("overwrite").saveAsTable("silver_orders")
 
-products_clean.write.format("delta").mode("append").saveAsTable("silver_products")
+products_clean.write.format("delta").mode("overwrite").saveAsTable("silver_products")
 
-order_items_clean.write.format("delta").mode("append").saveAsTable("silver_order_items")
+order_items_clean.write.format("delta").mode("overwrite").saveAsTable("silver_order_items")
 
-#payments_clean.write.format("delta").mode("append").saveAsTable("silver_payments")
+#payments_clean.write.format("delta").mode("overwrite").saveAsTable("silver_payments")
 
-reviews_clean.write.format("delta").mode("append").saveAsTable("silver_reviews")
+reviews_clean.write.format("delta").mode("overwrite").saveAsTable("silver_reviews")
 
-sellers_clean.write.format("delta").mode("append").saveAsTable("silver_sellers")
+sellers_clean.write.format("delta").mode("overwrite").saveAsTable("silver_sellers")
 
-category_clean.write.format("delta").mode("append").saveAsTable("silver_category")
+category_clean.write.format("delta").mode("overwrite").saveAsTable("silver_category")
